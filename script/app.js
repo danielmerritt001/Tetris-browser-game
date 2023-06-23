@@ -8,20 +8,24 @@ squares.forEach((square, idx) => {
 })
 
 /* ---------- Variables ----------*/
-const startPosition = 14
+const startPosition = 13
 const currPosition = startPosition
 let width = 10
 
 
 /* ---------- Pieces ---------- */
-const lPiece1 = [currPosition, currPosition-width, currPosition+width, currPosition+width+1]
-const lPiece2 = [currPosition, currPosition-1, currPosition-1+width, currPosition+1]
-const lPiece3 = [currPosition, currPosition-width, currPosition-width-1, currPosition+width]
-const lPiece4 = [currPosition, currPosition-1, currPosition+1, currPosition+1-width]
 
+const lPiece0 = [1, 1-width, 1+width, 1+width+1]
+const lPiece1 = [1, 1-1, 1-1+width, 1+1]
+const lPiece2 = [1, 1-width, 1-width-1, 1+width]
+const lPiece3 = [1, 1-1, 1+1, 1+1-width]
 
+const lRevPiece0 = []
+const lRevPiece1 = []
+const lRevPiece2 = []
+const lRevPiece3 = []
 
-const lPiece =[lPiece1, lPiece2, lPiece3, lPiece4]
+const lPiece =[lPiece0, lPiece1, lPiece2, lPiece3]
 const lRevPiece = []
 const zPiece = []
 const sPiece = []
@@ -39,7 +43,12 @@ console.log(currPiece)
 
 /* ---------- Functions ---------- */
 function show() {
+  currPiece.forEach(position => {
+    squares[currPosition+position].classList.add('piece')
+  })
 }
+show()
+console.log(board)
 /* ---------- Music Testing ----------*/
 const musicButton = document.getElementById("pheebs")
 musicButton.addEventListener('click', play)
