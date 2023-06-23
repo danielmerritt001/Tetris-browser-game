@@ -8,9 +8,17 @@ squares.forEach((square, idx) => {
 })
 
 /* ---------- Variables ----------*/
-const startPosition = 4
+const startPosition = 14
+const lPiece =[]
+const lRevPiece = []
+const zPiece = []
+const sPiece = []
+const squPiece = []
+const linePiece = []
+const tPiece = []
 
-
+const pieces = [lPiece, lRevPiece, zPiece, sPiece, squPiece, linePiece, tPiece]
+console.log(pieces)
 /* ---------- Event Listeners ----------*/
 
 
