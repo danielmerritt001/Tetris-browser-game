@@ -41,13 +41,17 @@ const sPiece = [sPiece0, sPiece1]
 
 const squPiece = [[0, 1, -width, -width+1]]
 
-const linePiece = []
+const linePiece0 =[0, -width, width, width*2]
+const linePiece1 =[0, -1, 1, -2]
+
+const linePiece = [linePiece0, linePiece1]
+
 const tPiece = []
 
 const pieces = [lPiece, lRevPiece, zPiece, sPiece, squPiece, linePiece, tPiece]
 console.log(pieces)
 
-let currPiece = pieces[4][0]
+let currPiece = pieces[5][0]
 console.log(currPiece)
 /* ---------- Event Listeners ----------*/
 
