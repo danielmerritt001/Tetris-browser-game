@@ -20,14 +20,20 @@ const lPiece1 = [0, -1, width-1, 1]
 const lPiece2 = [0, -width, -width-1, width]
 const lPiece3 = [0, -1, 1, 1-width]
 
+const lPiece =[lPiece0, lPiece1, lPiece2, lPiece3]
+
 const lRevPiece0 = [0, -width, width, width-1]
 const lRevPiece1 = [0, 0-1, -1-width, 1]
 const lRevPiece2 = [0, -width, 0, 1-width, width]
 const lRevPiece3 = [0, -1, 1, 1+width]
 
-const lPiece =[lPiece0, lPiece1, lPiece2, lPiece3]
 const lRevPiece = [lRevPiece0, lRevPiece1, lRevPiece2, lRevPiece3]
-const zPiece = []
+
+const zPiece0 = [0, -1, width, width+1]
+const zPiece1 = [0, -width, -1, width-1]
+
+const zPiece = [zPiece0, zPiece1]
+
 const sPiece = []
 const squPiece = []
 const linePiece = []
@@ -36,7 +42,7 @@ const tPiece = []
 const pieces = [lPiece, lRevPiece, zPiece, sPiece, squPiece, linePiece, tPiece]
 console.log(pieces)
 
-let currPiece = pieces[1][0]
+let currPiece = pieces[2][0]
 console.log(currPiece)
 /* ---------- Event Listeners ----------*/
 
