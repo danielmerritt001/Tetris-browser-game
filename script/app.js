@@ -7,10 +7,19 @@ squares.forEach((square, idx) => {
   square.classList.add(idx)
 })
 const nextSquares = document.querySelectorAll('.next div')
+const startBtn = document.getElementById('start')
 
 /* ---------- Event Listeners ---------- */
 document.addEventListener('keyup', movement)
-
+startBtn.addEventListener('click', () => {
+  if (speedId) {
+    clearInterval(speedId)
+    speedId = null
+  } else {
+    speedId = setInterval(moveDown, 1000)
+    showNext()
+  }
+})
 
 
 /* ---------- Variables ----------*/
@@ -18,6 +27,7 @@ const startPosition = 14
 let currPosition = startPosition
 let currRotation = 0
 let width = 10
+let speedId= null
 
 const nextWidth = 4
 let nextIndex = 5
@@ -78,8 +88,6 @@ let randNum =Math.floor(Math.random()*pieces.length)
 console.log(randNum)
 let currPiece = pieces[randNum][currRotation]
 console.log(currPiece)
-/* ---------- Event Listeners ----------*/
-
 
 /* ---------- Functions ---------- */
 function show() {
@@ -169,7 +177,7 @@ function rotate(){
   show()
 }
 
-speedId = setInterval(moveDown, 1000)
+
 
 /* ---------- Next Piece Grid --------- */
 function showNext() {
@@ -182,6 +190,8 @@ function showNext() {
   })
 }
 showNext()
+
+/* ---------- Buttons ---------- */
 
 
 /* ---------- Music Testing ----------*/
