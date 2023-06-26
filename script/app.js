@@ -2,12 +2,15 @@
 
 /* ---------- Cached Elements ----------*/
 let board = document.querySelector('.board')
-let squares = document.querySelectorAll('.board div')
-squares.forEach((square, idx) => {
+let squaresNode = document.querySelectorAll('.board div')
+squaresNode.forEach((square, idx) => {
   square.classList.add(idx)
 })
+let squares = [].slice.call(squaresNode)
+console.log(squares)
 const nextSquares = document.querySelectorAll('.next div')
 const startBtn = document.getElementById('start')
+const scoreDisplay = document.getElementById('score-display')
 
 /* ---------- Event Listeners ---------- */
 document.addEventListener('keyup', movement)
@@ -28,6 +31,8 @@ let currPosition = startPosition
 let currRotation = 0
 let width = 10
 let speedId= null
+let score = 0
+scoreDisplay.innerHTML = `Score: ${score}`
 
 const nextWidth = 4
 let nextIndex = 5
@@ -60,20 +65,26 @@ const lRevPiece = [lRevPiece0, lRevPiece1, lRevPiece2, lRevPiece3]
 
 const zPiece0 = [0, -1, width, width+1]
 const zPiece1 = [0, -width, -1, width-1]
+const zPiece2 = [0, -1, width, width+1]
+const zPiece3 = [0, -width, -1, width-1]
 
-const zPiece = [zPiece0, zPiece1]
+const zPiece = [zPiece0, zPiece1, zPiece2, zPiece3]
 
 const sPiece0 = [0, 1, width-1, width]
 const sPiece1 = [0, -width, 1, width+1]
+const sPiece2 = [0, 1, width-1, width]
+const sPiece3 = [0, -width, 1, width+1]
 
-const sPiece = [sPiece0, sPiece1]
+const sPiece = [sPiece0, sPiece1, sPiece2, sPiece3]
 
-const squPiece = [[0, 1, -width, -width+1]]
+const squPiece = [[0, 1, -width, -width+1], [0, 1, -width, -width+1], [0, 1, -width, -width+1], [0, 1, -width, -width+1]]
 
 const linePiece0 =[0, -width, width, width*2]
 const linePiece1 =[0, -1, 1, -2]
+const linePiece2 =[0, -width, width, width*2]
+const linePiece3 =[0, -1, 1, -2]
 
-const linePiece = [linePiece0, linePiece1]
+const linePiece = [linePiece0, linePiece1, linePiece2, linePiece3]
 
 const tPiece0 = [0, -width, -1, 1]
 const tPiece1 = [0, -width, 1, width]
@@ -116,9 +127,26 @@ function floor() {
     currPiece = pieces[randNum][currRotation]
     show()
     showNext()
+    addScore()
   }
 }
 
+function addScore() {
+  for(let i=0; i < 199; i+=width) {
+    const row = [i, i+1, i+2, i+3, i+4, i+5, i+6, i+7, i+8, i+9]
+    if(row.every(position => squares[position].classList.contains('frozen'))) {
+      score +=10 
+      scoreDisplay.innerHTML = `Score: ${score}`
+      row.forEach(position => {
+        squares[position].classList.remove('frozen')
+        squares[position].classList.remove('piece')
+      })
+      const squaresRemoved = squares.splice(i, width)
+      squares = squaresRemoved.concat(squares)
+      squares.forEach(cell => board.appendChild(cell))
+    }
+  }
+}
 /* ---------- Movement Functions ----------*/
 
 function movement(e) {

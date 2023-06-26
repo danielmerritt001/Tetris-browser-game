@@ -39,3 +39,7 @@ h1 {
 .container {
   display: flex;
 }
+.container-column {
+  display: flex;
+  flex-direction: column;
+}
