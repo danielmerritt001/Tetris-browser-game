@@ -7,6 +7,11 @@ squares.forEach((square, idx) => {
   square.classList.add(idx)
 })
 
+/* ---------- Event Listeners ---------- */
+document.addEventListener('keyup', movement)
+
+
+
 /* ---------- Variables ----------*/
 const startPosition = 14
 let currPosition = startPosition
@@ -91,11 +96,62 @@ function floor() {
   }
 }
 
+/* ---------- Movement Functions ----------*/
+
+function movement(e) {
+  if(e.keyCode === 37) {
+    moveLeft()
+  }
+  if(e.keyCode === 39) {
+    moveRight()
+  }
+  if(e.keyCode === 40) {
+    
+    moveDown()
+  }
+  if(e.keyCode ===38) {
+    
+    rotate()
+  }
+}
+
 function moveDown() {
   unShow()
   currPosition += width
   show()
   floor()
+}
+
+function moveLeft() {
+  unShow()
+  if(!currPiece.some(position => (currPosition + position) % width === 0)) {
+    currPosition -= 1
+    if(currPiece.some(position => squares[currPosition + position].classList.contains('frozen'))){
+      currPosition += 1
+    }
+  } 
+  show()
+}
+
+function moveRight() {
+  unShow()
+  if(!currPiece.some(position => (currPosition + position) % width === width - 1)) {
+    currPosition += 1
+    if(currPiece.some(position => squares[currPosition + position].classList.contains('frozen'))){
+      currPosition -= 1
+    }
+  } 
+  show()
+}
+
+function rotate(){
+  unShow()
+  currRotation ++
+  if (currRotation === currPiece.length){
+    currRotation = 0
+  }
+  currPiece = pieces[randNum][currRotation]
+  show()
 }
 
 speedId = setInterval(moveDown, 1000)
