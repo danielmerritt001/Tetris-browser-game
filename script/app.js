@@ -167,10 +167,10 @@ function movement(e) {
 }
 
 function moveDown() {
+  floor()
   unShow()
   currPosition += width
   show()
-  floor()
 }
 
 function moveLeft() {
@@ -202,6 +202,10 @@ function rotate(){
     currRotation = 0
   }
   currPiece = pieces[randNum][currRotation]
+  if (currPiece.some(position => (currPosition + position) % width === width - 1) && currPiece.some(position => (currPosition + position) % width === 0)) {
+    currRotation --
+    currPiece = pieces[randNum][currRotation]
+  }
   show()
 }
 
