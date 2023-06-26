@@ -212,6 +212,9 @@ function rotate(){
   currPiece = pieces[randNum][currRotation]
   if (currPiece.some(position => (currPosition + position) % width === width - 1) && currPiece.some(position => (currPosition + position) % width === 0)) {
     currRotation --
+    if(currRotation === -1) {
+      currRotation = 3
+    }
     currPiece = pieces[randNum][currRotation]
   }
   show()
