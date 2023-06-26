@@ -9,7 +9,8 @@ squares.forEach((square, idx) => {
 
 /* ---------- Variables ----------*/
 const startPosition = 14
-const currPosition = startPosition
+let currPosition = startPosition
+let currRotation = 0
 let width = 10
 
 
@@ -55,8 +56,9 @@ const tPiece = [tPiece0, tPiece1, tPiece2, tPiece3]
 
 const pieces = [lPiece, lRevPiece, zPiece, sPiece, squPiece, linePiece, tPiece]
 console.log(pieces)
-
-let currPiece = pieces[6][0]
+let randNum =Math.floor(Math.random()*pieces.length)
+console.log(randNum)
+let currPiece = pieces[randNum][currRotation]
 console.log(currPiece)
 /* ---------- Event Listeners ----------*/
 
@@ -68,7 +70,39 @@ function show() {
   })
 }
 show()
-console.log(board)
+
+function unShow() {
+  currPiece.forEach(position => {
+    squares[currPosition + position].classList.remove('piece')
+  })
+}
+
+function floor() {
+  if(currPiece.some(position => squares[currPosition + position + width].classList.contains('frozen'))) {
+    console.log
+    currPiece.forEach(position => {
+      squares[currPosition + position].classList.add('frozen')
+    })
+    randNum = Math.floor(Math.random()*pieces.length)
+    currRotation = 0
+    currPosition = 14
+    currPiece = pieces[randNum][currRotation]
+    show()
+  }
+}
+
+function moveDown() {
+  unShow()
+  currPosition += width
+  show()
+  floor()
+}
+
+speedId = setInterval(moveDown, 1000)
+
+
+
+
 /* ---------- Music Testing ----------*/
 const musicButton = document.getElementById("pheebs")
 musicButton.addEventListener('click', play)
