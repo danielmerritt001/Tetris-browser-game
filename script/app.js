@@ -6,6 +6,7 @@ let squares = document.querySelectorAll('.board div')
 squares.forEach((square, idx) => {
   square.classList.add(idx)
 })
+const nextSquares = document.querySelectorAll('.next div')
 
 /* ---------- Event Listeners ---------- */
 document.addEventListener('keyup', movement)
@@ -18,6 +19,18 @@ let currPosition = startPosition
 let currRotation = 0
 let width = 10
 
+const nextWidth = 4
+let nextIndex = 5
+let nextRandNum = 0
+const nextPiece = [
+  [0, 0-nextWidth, nextWidth, nextWidth+1],
+  [0, -nextWidth, nextWidth, nextWidth-1],
+  [0, -1, nextWidth, nextWidth+1],
+  [0, 1, nextWidth-1, nextWidth],
+  [0, 1, -nextWidth, -nextWidth+1],
+  [0, -nextWidth, nextWidth, nextWidth*2],
+  [nextWidth, 0, nextWidth -1, nextWidth + 1]
+]
 
 /* ---------- Pieces ---------- */
 
@@ -88,11 +101,13 @@ function floor() {
     currPiece.forEach(position => {
       squares[currPosition + position].classList.add('frozen')
     })
-    randNum = Math.floor(Math.random()*pieces.length)
+    randNum = nextRandNum
+    nextRandNum = Math.floor(Math.random()*pieces.length)
     currRotation = 0
     currPosition = 14
     currPiece = pieces[randNum][currRotation]
     show()
+    showNext()
   }
 }
 
@@ -156,7 +171,17 @@ function rotate(){
 
 speedId = setInterval(moveDown, 1000)
 
-
+/* ---------- Next Piece Grid --------- */
+function showNext() {
+  nextSquares.forEach(square => {
+    square.classList.remove('piece')
+  })
+  console.log(nextPiece[nextRandNum])
+  nextPiece[nextRandNum].forEach(position => {
+    nextSquares[nextIndex + position].classList.add('piece')
+  })
+}
+showNext()
 
 
 /* ---------- Music Testing ----------*/
