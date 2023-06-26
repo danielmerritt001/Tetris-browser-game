@@ -128,6 +128,7 @@ function floor() {
     show()
     showNext()
     addScore()
+    gameOver()
   }
 }
 
@@ -145,6 +146,13 @@ function addScore() {
       squares = squaresRemoved.concat(squares)
       squares.forEach(cell => board.appendChild(cell))
     }
+  }
+}
+
+function gameOver() {
+  if(currPiece.some(position => squares[currPosition + position].classList.contains('frozen'))) {
+    scoreDisplay.innerHTML=`Game Over: Final Score: ${score}`
+    clearInterval(speedId)
   }
 }
 /* ---------- Movement Functions ----------*/
