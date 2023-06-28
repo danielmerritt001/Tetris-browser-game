@@ -136,11 +136,11 @@ function addScore() {
   for(let i=0; i < 199; i+=width) {
     const row = [i, i+1, i+2, i+3, i+4, i+5, i+6, i+7, i+8, i+9]
     if(row.every(position => squares[position].classList.contains('frozen'))) {
-      score +=10 
-      scoreDisplay.innerHTML = `Score: ${score}`
       row.forEach(position => {
         squares[position].classList.remove('frozen')
         squares[position].classList.remove('piece')
+        score += 1
+        scoreDisplay.innerHTML = `Score: ${score}`
       })
       const squaresRemoved = squares.splice(i, width)
       squares = squaresRemoved.concat(squares)
@@ -227,7 +227,6 @@ function showNext() {
   nextSquares.forEach(square => {
     square.classList.remove('piece')
   })
-  console.log(nextPiece[nextRandNum])
   nextPiece[nextRandNum].forEach(position => {
     nextSquares[nextIndex + position].classList.add('piece')
   })
