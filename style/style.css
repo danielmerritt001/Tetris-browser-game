@@ -68,3 +68,65 @@ button {
   width: 120px;
   margin-left: 80px;
 }
+
+@media screen and (max-width: 550px) {
+  
+  .board {
+    width: 200px;
+    height: 400px;
+  }
+  
+  .board div {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .piece {
+    background: black;
+    background: radial-gradient(circle, black 0%, rgb(0, 192, 0) 100%);
+  }
+  
+  .frozen {
+  
+  }
+  
+  .next {
+    width: 80px;
+    height: 80px;
+    background-color: black;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 40px;
+    border: 2px solid rgb(0, 192, 0);
+  }
+  
+  #score-display {
+    margin-left: 40px;
+    width: 80px;
+    text-align: center;
+    background-color: black;
+    color: white;
+    border: solid 2px rgb(0, 192, 0);
+  }
+  
+  .next div {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .container-column {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  button {
+    width: 80px;
+    margin-left: 40px;
+  }
+}
