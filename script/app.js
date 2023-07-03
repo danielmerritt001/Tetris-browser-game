@@ -160,17 +160,16 @@ function gameOver() {
 function movement(e) {
   if(e.keyCode === 37) {
     moveLeft()
-  }
-  if(e.keyCode === 39) {
+  } else if(e.keyCode === 39) {
     moveRight()
-  }
-  if(e.keyCode === 40) {
-    
+  } else if(e.keyCode === 40) {  
     moveDown()
-  }
-  if(e.keyCode ===38) {
-    
+  } else if(e.keyCode ===38) {
     rotate()
+  }
+  if (!speedId) {
+    speedId = setInterval(moveDown, 1000)
+    showNext()
   }
 }
 
