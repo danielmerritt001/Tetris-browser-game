@@ -65,8 +65,15 @@ h1 {
 }
 
 button {
-  width: 120px;
+  width: 124px;
   margin-left: 80px;
+  border: solid 2px rgb(0, 192, 0);
+  background-color: black;
+  color: white;
+}
+
+button:hover {
+  color: rgb(0, 192, 0);
 }
 
 @media screen and (max-width: 550px) {
@@ -126,7 +133,8 @@ button {
   }
   
   button {
-    width: 80px;
+    width: 84px;
     margin-left: 40px;
+    
   }
 }
