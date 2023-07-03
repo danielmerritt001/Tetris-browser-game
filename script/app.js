@@ -11,6 +11,7 @@ console.log(squares)
 const nextSquares = document.querySelectorAll('.next div')
 const startBtn = document.getElementById('start')
 const scoreDisplay = document.getElementById('score-display')
+const resetBtn = document.getElementById('reset')
 
 /* ---------- Event Listeners ---------- */
 document.addEventListener('keyup', movement)
@@ -22,6 +23,26 @@ startBtn.addEventListener('click', () => {
     speedId = setInterval(moveDown, 1000)
     showNext()
   }
+})
+resetBtn.addEventListener('click', () => {
+  clearInterval(speedId)
+  currPosition = startPosition
+  currRotation = 0
+  width = 10
+  speedId= null
+  score = 0
+  randNum = nextRandNum
+  nextRandNum = Math.floor(Math.random()*pieces.length)
+  currRotation = 0
+  currPosition = 14
+  currPiece = pieces[randNum][currRotation]
+  scoreDisplay.innerHTML = `Score: ${score}`
+  squaresNode.forEach((square, idx) => {
+    square.classList.remove("piece")
+    square.classList.remove("frozen")
+  })
+  show()
+  showNext()
 })
 
 
