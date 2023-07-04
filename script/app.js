@@ -39,7 +39,9 @@ resetBtn.addEventListener('click', () => {
   scoreDisplay.innerHTML = `Score: ${score}`
   squaresNode.forEach((square, idx) => {
     square.classList.remove("piece")
-    square.classList.remove("frozen")
+    if(idx < 200) {
+      square.classList.remove("frozen")
+    }
   })
   show()
   showNext()
