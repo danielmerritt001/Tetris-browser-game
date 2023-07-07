@@ -239,6 +239,13 @@ function rotate(){
     }
     currPiece = pieces[randNum][currRotation]
   }
+  if(currPiece.some(position => squares[currPosition + position + width].classList.contains('frozen'))) {
+    currRotation --
+    if(currRotation === -1) {
+      currRotation = 3
+    }
+    currPiece = pieces[randNum][currRotation]
+  }
   show()
 }
 
